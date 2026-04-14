@@ -1,0 +1,15 @@
+{
+  "difficulty": 11,
+  "allowedHexDigits": "012def",
+  "redisHost": "localhost",
+  "redisPort": "6379",
+  "port": "8080",
+  "allowedOrigins": [
+    "https://domain1.com",
+    "https://sub.domain1.com"
+  ],
+  "upstreams": {
+    "domain1.com": "https://domain1-api.com",
+    "*": "https://fallback-api.com"
+  }
+}

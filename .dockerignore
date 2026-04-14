@@ -1,0 +1,37 @@
+# Git
+.git
+.gitignore
+
+# Editor and IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# Build artifacts
+bin/
+dist/
+powgo
+
+# Logs
+*.log
+
+# Config files (except example)
+config.json
+*.env
+
+# Test files
+*_test.go
+*_test
+
+# Documentation
+README.md
+LICENSE
+
+# Temporary files
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+Thumbs.db

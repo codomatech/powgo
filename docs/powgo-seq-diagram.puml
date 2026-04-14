@@ -1,0 +1,34 @@
+@startuml
+title PowGo Protected Resource Access Flow
+
+actor Client as C
+participant "PowGo" as P
+participant "Upstream Server" as U
+
+== Initial Request (No Puzzle) ==
+
+C -> P: Request protected resource\n(without puzzle solution)
+note right of C: No nonce/solution attached
+
+P --> C: Status Code 299 (Warning)\nPuzzle: "Find nonce that makes\nSHA256 hash start with specific pattern"
+note right of P: Challenge includes data & pattern
+
+== Client Solves Puzzle ==
+
+C -> C: Find nonce via brute force\n(computational work)
+
+== Retry with Solution ==
+
+C -> P: Retry original request\n+ solution (nonce attached)
+
+P -> P: Verify nonce solution\nCheck SHA256 pattern match
+
+P -> P: Cache valid nonce\n(short time window)
+
+P -> U: Proxy request upstream\n(with original content)
+
+U --> P: Upstream response
+
+P --> C: Return response to client
+
+@enduml
